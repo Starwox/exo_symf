@@ -5,6 +5,20 @@
     <div class="container">
         {{ form(form) }}
 
-        {{ api }}
+        {% for value in api %}
+            <h3>Nom: {{ value.properties.nom }}</h3>
+            <p>Horaires: <br />
+
+                Du: {{ value.properties.horaires[0].du }}
+                au: {{ value.properties.horaires[0].au }}.
+                <br />
+                De: {{ value.properties.horaires[0].heures[0].de }},
+                à: {{ value.properties.horaires[0].heures[0].a }}
+                <br />
+                Tel: {{ value.properties.email }}
+                Email: {{ value.properties.telephone }}
+            </p>
+
+        {% endfor %}
     </div>
 {% endblock %}

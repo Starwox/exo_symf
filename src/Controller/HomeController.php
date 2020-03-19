@@ -184,12 +184,14 @@ class HomeController extends AbstractController
             $dep = $form->get('department')->getData();
             $type = $form->get('type')->getData();
 
-            $api = $this->callAPI('GET',
+            $get_data = $this->callAPI('GET',
                 "https://etablissements-publics.api.gouv.fr/v3/departements/". $dep . "/" . $type,
                 false
             );
 
-
+            $response = json_decode($get_data, true);
+            dump($response);
+            $api = $response['features'];
         }
 
         return $this->render('search/index.html.twig', [
