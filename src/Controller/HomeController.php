@@ -190,7 +190,6 @@ class HomeController extends AbstractController
             );
 
             $response = json_decode($get_data, true);
-            dump($response);
             $api = $response['features'];
         }
 
