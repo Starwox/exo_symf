@@ -22,12 +22,6 @@ class HomeController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function index(Request $req) {
-        return $this->render('search/index.html.twig', [
-                'controller_name' => 'HomeController'
-        ]);
-    }
-
     public function searchBar(Request $req) {
         $form = $this->createFormBuilder(null)
             ->add('department', TextType::class)
@@ -181,6 +175,7 @@ class HomeController extends AbstractController
             ->add('submit', SubmitType::class)
             ->getForm()
         ;
+
         $form->handleRequest($req);
 
         $api = null;
@@ -193,12 +188,14 @@ class HomeController extends AbstractController
                 "https://etablissements-publics.api.gouv.fr/v3/departements/". $dep . "/" . $type,
                 false
             );
-        }
-            dump($form->get('department')->getData());
 
-        return $this->render('search/finder.html.twig', [
+
+        }
+
+        return $this->render('search/index.html.twig', [
             'form' => $form->createView(),
             'api' => $api,
+            'controller_name' => 'HomeController'
         ]);
     }
 

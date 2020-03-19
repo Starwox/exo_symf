@@ -3,8 +3,8 @@
 
 {% block body %}
     <div class="container">
-        {{ render(controller(
-            'App\\Controller\\HomeController::searchBar'
-        )) }}
+        {{ form(form) }}
+
+        {{ api }}
     </div>
 {% endblock %}
